@@ -25,7 +25,21 @@
     router-view
 </template>
 
+<script>
+</script>
+
 <style lang="stylus">
+  @import './common.styl'
+
   body
-    text-align: center
+    background url('./assets/blurrycroc.jpg') repeat
+    background-size cover
+    margin 0
+    font-size 22pt
+    font-family font
+
+  #app
+    display flex
+    flex-direction column
+    align-self center
 </style>

@@ -2,18 +2,23 @@
   section#doc
     #error
       p There should be an error message here if something's wrong.
-    #croc-line
-      router-link.link(:to="doc.name")
-        | {{BASE_URL}}/
-        strong {{doc.name}}
+    CrocLine#croc-line(:name="doc.name")
     form#doc-form
       #doc-content
         textarea#doc-text(name="doc", placeholder="Enter stuff here...") {{doc.body}}
         input#feed-button(type="submit", value="feed to croc")
 </template>
-<style>
+
+<style lang="stylus" scoped>
+  @import '../common.styl'
+
+  #doc
+    background transparent
+
 </style>
+
 <script>
+  import CrocLine from '../components/CrocLine.vue'
   export default {
     data() {
       return {
@@ -27,6 +32,9 @@
       croc_url: function() {
         return `${BASE_URL}/${this.doc.name}`
       }
+    },
+    components: {
+      CrocLine
     }
   }
 </script>

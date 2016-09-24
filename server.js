@@ -47,7 +47,8 @@ function createRenderer (bundle) {
 }
 
 app.use('/dist', express.static(resolve('./dist')))
-app.use(favicon(resolve('./src/assets/logo.png')))
+// TODO: Uncomment when you have a real icon
+// app.use(favicon(resolve('./src/assets/logo.png')))
 
 app.get('*', (req, res) => {
   if (!renderer) {
