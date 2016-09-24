@@ -3,10 +3,7 @@
     #error
       p There should be an error message here if something's wrong.
     CrocLine#croc-line(:name="doc.name")
-    form#doc-form
-      #doc-content
-        textarea#doc-text(name="doc", placeholder="Enter stuff here...") {{doc.body}}
-        input#feed-button(type="submit", value="feed to croc")
+    DocForm
 </template>
 
 <style lang="stylus" scoped>
@@ -19,6 +16,7 @@
 
 <script>
   import CrocLine from '../components/CrocLine.vue'
+  import DocForm from '../components/DocForm.vue'
   export default {
     data() {
       return {
@@ -34,7 +32,8 @@
       }
     },
     components: {
-      CrocLine
+      CrocLine,
+      DocForm
     }
   }
 </script>

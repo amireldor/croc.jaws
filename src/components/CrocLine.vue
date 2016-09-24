@@ -8,8 +8,9 @@
 <style lang="stylus" scoped>
   @import '../common.styl'
   div
+    margin 60px 0 common-spacing
     background common-background
-    padding common-spacing
+    padding common-spacing 0
     text-align center
     a
       color: link-color

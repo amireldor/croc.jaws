@@ -41,5 +41,11 @@
   #app
     display flex
     flex-direction column
-    align-self center
+    align-items center
+
+  #croc-line, #doc-form
+    width common-width
+    @media narrow
+      width 90vw
+
 </style>
