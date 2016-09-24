@@ -1,6 +1,7 @@
 const path = require('path')
 const webpack = require('webpack')
 const vueConfig = require('./vue-loader.config')
+const appConfig = require('./app.config')
 
 module.exports = {
   devtool: '#source-map',
@@ -37,6 +38,9 @@ module.exports = {
   plugins: [
     new webpack.LoaderOptionsPlugin({
       vue: vueConfig
+    }),
+    new webpack.DefinePlugin({
+      'BASE_URL': JSON.stringify(appConfig.BASE_URL)
     })
   ]
 }

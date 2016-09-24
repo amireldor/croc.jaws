@@ -3,17 +3,13 @@ import Router from 'vue-router'
 
 Vue.use(Router)
 
-// import { createListView } from '../views/CreateListView'
-// import ItemView from '../views/ItemView.vue'
-// import UserView from '../views/UserView.vue'
-
-import Home from '../views/Home.vue'
+import CrocDoc from '../views/CrocDoc.vue'
 
 export default new Router({
   mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
-    { path: '/', component: Home },
+    { path: '/', component: CrocDoc },
     // { path: '/top/:page(\\d+)?', component: createListView('top') },
     // { path: '/new/:page(\\d+)?', component: createListView('new') },
     // { path: '/show/:page(\\d+)?', component: createListView('show') },
@@ -21,6 +17,6 @@ export default new Router({
     // { path: '/job/:page(\\d+)?', component: createListView('job') },
     // { path: '/item/:id(\\d+)', component: ItemView },
     // { path: '/user/:id', component: UserView },
-    { path: '*', redirect: '/top' }
+    { path: '*', redirect: '/' }
   ]
 })
