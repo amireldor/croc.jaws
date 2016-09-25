@@ -50,7 +50,7 @@ app.use('/dist', express.static(resolve('./dist')))
 // TODO: Uncomment when you have a real icon
 // app.use(favicon(resolve('./src/assets/logo.png')))
 
-app.get('*', (req, res) => {
+app.get('*', (req, res, next) => {
   if (!renderer) {
     return res.end('waiting for compilation... refresh in a moment.')
   }
@@ -60,32 +60,40 @@ app.get('*', (req, res) => {
   const renderStream = renderer.renderToStream(context)
   let firstChunk = true
 
-  res.write(html.head)
+  let htmlResponse = html.head
 
   renderStream.on('data', chunk => {
     if (firstChunk) {
       // embed initial store state
       if (context.initialState) {
-        res.write(
+        htmlResponse +=
           `<script>window.__INITIAL_STATE__=${
-            serialize(context.initialState, { isJSON: true })
-          }</script>`
-        )
+             serialize(context.initialState, { isJSON: true })
+           }</script>`
       }
       firstChunk = false
     }
-    res.write(chunk)
+    htmlResponse += chunk
   })
 
   renderStream.on('end', () => {
-    res.end(html.tail)
+    htmlResponse += html.tail
+    res.end(htmlResponse)
     console.log(`whole request: ${Date.now() - s}ms`)
   })
 
   renderStream.on('error', err => {
-    throw err
+    next(err)
   })
 })
+
+// error middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack)
+  console.error(err)
+  res.status(500).send('sorry, the croc is sick')
+})
+
 
 const port = process.env.PORT || 8080
 app.listen(port, () => {

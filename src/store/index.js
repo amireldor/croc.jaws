@@ -2,18 +2,36 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 // import { fetchItem, fetchItems, fetchIdsByType, fetchUser } from './api'
 
+import * as types from './types'
+import Smart from './modules/smart';
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
+    count: 0
   },
   actions: {
     SAY_HELLO: ({commit, dispatch, state}, {type}) => {
       return dispatch('HELLO', 'denmark')
     }
   },
-  mutations: {},
-  getters: {}
+  mutations: {
+    [types.INCREMENT] (state, payload) {
+      state.count += payload.fun || 1
+    }
+  },
+  getters: {},
+  actions: {
+    increment({commit}, payload) {
+      setTimeout(() => {
+        commit(types.INCREMENT, payload)
+      }, 250)
+    }
+  },
+  modules: {
+    smart: Smart
+  }
 })
 
 export default store

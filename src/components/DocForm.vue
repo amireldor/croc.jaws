@@ -18,7 +18,7 @@
     display block
     background common-background
     padding common-spacing
-    display flex  // flex on everythign!!!!
+    display flex  // flex on everything!!!!
 
     textarea
       width 100%
@@ -26,6 +26,8 @@
       border none
       min-height minimum-height
       font-size inherit
+      &:placeholder
+        color lighten(black, 1%)
 
   #feed-button
     margin common-spacing 0 0
