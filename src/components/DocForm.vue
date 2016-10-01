@@ -1,20 +1,20 @@
 <template lang="pug">
-  form#doc-form
-    #doc-content
-      textarea#doc-text(name="doc" v-model="body" placeholder="Enter stuff here...")
-    input#feed-button(type="submit", value="feed to croc")
+  form.doc-form
+    .doc-content
+      textarea.doc-text(name="doc" v-model="body" placeholder="Enter stuff here...")
+    input.feed-button(type="submit", value="feed to croc")
 </template>
 
 <style lang="stylus" scoped>
   @import '../common.styl'
   minimum-height = 320px
 
-  #doc-form
+  .doc-form
     min-height minimum-height
     display flex
     flex-direction column
 
-  #doc-content
+  .doc-content
     display block
     background common-background
     padding common-spacing
@@ -29,7 +29,7 @@
       &:placeholder
         color lighten(black, 1%)
 
-  #feed-button
+  .feed-button
     margin common-spacing 0 0
     align-self center
     border none
@@ -48,6 +48,7 @@
       color lighten(link-color, lighten-value)
       backgound lighten(common-background, lighten-value)
       cursor default
+
 </style>
 
 <script>

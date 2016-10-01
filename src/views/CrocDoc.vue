@@ -1,10 +1,8 @@
 <template lang="pug">
   section#doc
-    button(v-on:click='interesting(4)') fun test |{{ temp }}|
-    #error
-      p There should be an error message here if something's wrong.
+    Notifications#messages
     CrocLine#croc-line(:name="doc.name")
-    DocForm
+    DocForm#doc-form
 </template>
 
 <style lang="stylus" scoped>
@@ -12,6 +10,13 @@
 
   #doc
     background transparent
+    margin 60px 0 common-spacing
+
+  #messages
+
+  #croc-line
+    background red
+    margin-bottom common-spacing
 
 </style>
 
@@ -20,6 +25,7 @@
 
   import CrocLine from '../components/CrocLine.vue'
   import DocForm from '../components/DocForm.vue'
+  import Notifications from './Notifications.vue'
 
   export default {
     data() {
@@ -28,21 +34,17 @@
     },
     computed: {
       doc() {
-        return this.$store.state.doc;
-      },
-      temp: function () {
-        return `Amir2 ${this.$store.state.count} + ${this.$store.state.smart.fun}`
+        return {
+          ...this.$store.state.doc
+        }
       }
     },
     methods: {
-      interesting(howMuch) {
-        this.$store.dispatch(types.INCREMENT, {fun: howMuch})
-        this.$store.dispatch('test-1')
-      }
     },
     components: {
       CrocLine,
-      DocForm
+      DocForm,
+      Notifications,
     }
   }
 </script>

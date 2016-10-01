@@ -9,32 +9,27 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    count: 0,
     doc: {
-      name: 'test-1',
-      body: 'of christ',
-    }
+      name: '',
+      body: '',
+    },
+    notifications: [
+      {message: 'amir', type: 'error'},
+      {message: 'fun', type: 'error'},
+      {message: 'is me', type: 'info'}
+    ]
   },
   mutations: {
-    [types.INCREMENT] (state, payload) {
-      state.count += payload.fun || 1
-        console.log('hi', state.count)
-    }
+    // [types.INCREMENT] (state, payload) {
+    //   state.count += payload.fun || 1
+    //     console.log('hi', state.count)
+    // }
   },
   getters: {},
   actions: {
-    increment({commit}, payload) {
-      setTimeout(() => {
-        commit(types.INCREMENT, payload)
-      }, 250)
-    },
-    SAY_HELLO({commit, dispatch, state}, {type}) {
-      return dispatch('HELLO', 'denmark')
-    },
-    'test-1'({commit, dispatch, state}) {
-      state.doc.name = "john";
-      state.doc.body = "james";
-    }
+    // SAY_HELLO({commit, dispatch, state}, {type}) {
+    //   return dispatch('HELLO', 'denmark')
+    // },
   },
   modules: {
     smart: Smart

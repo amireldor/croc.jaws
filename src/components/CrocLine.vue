@@ -8,18 +8,18 @@
 <style lang="stylus" scoped>
   @import '../common.styl'
   div
-    margin 60px 0 common-spacing
     background common-background
     padding common-spacing 0
     text-align center
     a
-      color: link-color
+      color link-color
 
+    visibility hidden
     transform scaleX(0) scaleY(0)  // Initially hidden
     transition transform 0.12s
     & .show  // Add a class and you see it
       transform scale(1) scaleY(1)
-
+      visibility visible
 </style>
 
 <script>
@@ -36,9 +36,7 @@
       }
     },
     created: function () {
-      setTimeout(() => {
-        this.show()
-      }, 1200)
+      setTimeout(() => this.show(), 1000)
     }
   }
 </script>

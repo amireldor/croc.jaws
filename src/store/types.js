@@ -1,1 +1,1 @@
-export const INCREMENT = 'increment'
+// export const TYPE_NAME = type-name'
