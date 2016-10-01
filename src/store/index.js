@@ -3,8 +3,10 @@ import Vuex from 'vuex'
 // import { fetchItem, fetchItems, fetchIdsByType, fetchUser } from './api'
 
 import * as types from './types'
+import Notifications from './modules/notifications'
 
 Vue.use(Vuex)
+
 
 const store = new Vuex.Store({
   state: {
@@ -13,20 +15,16 @@ const store = new Vuex.Store({
       body: '',
     },
     notifications: [
-      { message: 'should be first', type: 'info' },
-      { message: 'then this', type: 'error' },
-      { message: 'i am most recent', type: 'error' },
     ]
   },
   mutations: {
-    [types.REMOVE_NOTIFICATION](state, payload) {
-      const indexToRemove = payload.index
-      state.notifications.splice(indexToRemove, 1)
-    }
   },
   getters: {
   },
   actions: {
+  },
+  modules: {
+    Notifications
   }
 })
 

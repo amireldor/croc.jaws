@@ -51,6 +51,8 @@
       close() {
         this.$store.commit(REMOVE_NOTIFICATION, {index: this.index})
       }
+    },
+    created() {
     }
   }
 </script>

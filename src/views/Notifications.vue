@@ -30,7 +30,7 @@
   export default {
     computed: {
       notifications() {
-        return this.$store.state.notifications
+        return this.$store.state.Notifications.notifications
       }
     },
     components: {

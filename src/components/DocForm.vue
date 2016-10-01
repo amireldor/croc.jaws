@@ -2,7 +2,7 @@
   form.doc-form
     .doc-content
       textarea.doc-text(name="doc" v-model="body" placeholder="Enter stuff here...")
-    input.feed-button(type="submit", value="feed to croc")
+    input.feed-button(type="submit" value="feed to croc" v-on:click="test")
 </template>
 
 <style lang="stylus" scoped>
@@ -58,8 +58,16 @@
         body: this.$store.state.doc.body
       }
     },
-    computed: {
-
+    methods: {
+      test(event) {
+        // adds a random notification
+        event.preventDefault()
+        const notification = {
+          message: "HI!" + new Date(),
+          type: Math.random() > 0.5 ? "error" : "info"
+        }
+        this.$store.commit('add-notification', { notification })
+      }
     }
   }
 </script>
