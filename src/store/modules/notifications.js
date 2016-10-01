@@ -1,53 +1,40 @@
 import * as types from '../types'
 
-class NotificationsCloser
-{
-  DEFAULT_TIMEOUT = 3000
+const DEFAULT_TIMEOUT = 3000
+let timeoutRefs = []
 
-  constructor(store) {
-    this.$store = store
-    this.notificationClosers = []
-  }
 
-  addCloser(timeout = this.DEFAULT_TIMEOUT) {
-    this.notificationClosers.push(setTimeout(this.closeNotification.bind(this), timeout))
-  }
+function addNotification({state, dispatch}, payload) {
+  state.notifications.push(payload.notification)
 
-  closeNotification() {
-    this.$store.commit(types.REMOVE_NOTIFICATION, { index: 0, notificationCloser: true })
-  }
+  const timeoutRef = setTimeout(() => {
+    dispatch(types.REMOVE_NOTIFICATION, { byTimeout: true })
+  }, DEFAULT_TIMEOUT)
 
-  clearOneTimeout() {
-    const lastTimeout = this.notificationClosers.pop()
-    clearTimeout(lastTimeout)
-  }
+  timeoutRefs.push(timeoutRef)
 }
 
-let notificationCloser = null // initialized after 'store' so it can reference it
+
+function removeNotification({state}, payload) {
+  const indexToRemove = payload.index || 0
+
+  if (payload.byTimeout !== true) {
+    clearTimeout(timeoutRefs[indexToRemove])
+  }
+
+  state.notifications.splice(indexToRemove, 1)
+  timeoutRefs.splice(indexToRemove, 1)
+}
+
 
 const Notifications = {
   state: {
     notifications: []
   },
-  mutations: {
-    [types.ADD_NOTIFICATION](state, payload) {
-      state.notifications.push(payload.notification)
-      notificationCloser.addCloser()
-      console.log('store?', this.$store)
-    },
-    [types.REMOVE_NOTIFICATION](state, payload) {
-      const indexToRemove = payload.index
-      state.notifications.splice(indexToRemove, 1)
-
-      if (payload.notificationCloser !== true) {
-        // If it's a manual click on 'close', cancel one timeout
-        notificationCloser.clearOneTimeout()
-      }
-    }
+  actions: {
+    [types.ADD_NOTIFICATION]: (context, payload) => addNotification(context, payload),
+    [types.REMOVE_NOTIFICATION]: (context, payload) => removeNotification(context, payload)
   }
 }
-
-notificationCloser = new NotificationsCloser(Notifications)
-
 
 export default Notifications

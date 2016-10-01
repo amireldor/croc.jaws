@@ -66,7 +66,7 @@
           message: "HI!" + new Date(),
           type: Math.random() > 0.5 ? "error" : "info"
         }
-        this.$store.commit('add-notification', { notification })
+        this.$store.dispatch('add-notification', { notification })
       }
     }
   }

@@ -49,7 +49,7 @@
     props: ['message', 'type', 'index'],
     methods: {
       close() {
-        this.$store.commit(REMOVE_NOTIFICATION, {index: this.index})
+        this.$store.dispatch(REMOVE_NOTIFICATION, {index: this.index})
       }
     },
     created() {
