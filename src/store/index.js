@@ -3,7 +3,6 @@ import Vuex from 'vuex'
 // import { fetchItem, fetchItems, fetchIdsByType, fetchUser } from './api'
 
 import * as types from './types'
-import Smart from './modules/smart';
 
 Vue.use(Vuex)
 
@@ -14,29 +13,30 @@ const store = new Vuex.Store({
       body: '',
     },
     notifications: [
-      {message: 'amir', type: 'error'},
-      {message: 'fun', type: 'error'},
-      {message: 'is me', type: 'info'}
+      { message: 'should be first', type: 'info' },
+      { message: 'then this', type: 'error' },
+      { message: 'i am most recent', type: 'error' },
     ]
   },
   mutations: {
-    // [types.INCREMENT] (state, payload) {
-    //   state.count += payload.fun || 1
-    //     console.log('hi', state.count)
-    // }
+    [types.REMOVE_NOTIFICATION](state, payload) {
+      const indexToRemove = payload.index
+      state.notifications.splice(indexToRemove, 1)
+    }
   },
-  getters: {},
+  getters: {
+  },
   actions: {
-    // SAY_HELLO({commit, dispatch, state}, {type}) {
-    //   return dispatch('HELLO', 'denmark')
-    // },
-  },
-  modules: {
-    smart: Smart
   }
 })
 
 export default store
+// mutations:
+// [types.INCREMENT] (state, payload) {
+//   state.count += payload.fun || 1
+//     console.log('hi', state.count)
+// }
+
 //
 //   actions: {
 //     // ensure data for rendering given list type

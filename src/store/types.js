@@ -1,1 +1,3 @@
-// export const TYPE_NAME = type-name'
+
+
+export const REMOVE_NOTIFICATION = 'remove-notification'

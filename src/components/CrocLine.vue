@@ -7,6 +7,7 @@
 
 <style lang="stylus" scoped>
   @import '../common.styl'
+
   div
     background common-background
     padding common-spacing 0
@@ -20,6 +21,7 @@
     & .show  // Add a class and you see it
       transform scale(1) scaleY(1)
       visibility visible
+
 </style>
 
 <script>

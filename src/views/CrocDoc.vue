@@ -10,12 +10,18 @@
 
   #doc
     background transparent
-    margin 60px 0 common-spacing
+    margin 69px 0 common-spacing
 
   #messages
+    position fixed
+    top 0
+    left 0
+    right 0
+    z-index: 666
+    max-width common-width * 1.4
+    margin auto
 
   #croc-line
-    background red
     margin-bottom common-spacing
 
 </style>
