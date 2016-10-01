@@ -9,16 +9,16 @@ Vue.use(Vuex)
 
 const store = new Vuex.Store({
   state: {
-    count: 0
-  },
-  actions: {
-    SAY_HELLO: ({commit, dispatch, state}, {type}) => {
-      return dispatch('HELLO', 'denmark')
+    count: 0,
+    doc: {
+      name: 'test-1',
+      body: 'of christ',
     }
   },
   mutations: {
     [types.INCREMENT] (state, payload) {
       state.count += payload.fun || 1
+        console.log('hi', state.count)
     }
   },
   getters: {},
@@ -27,6 +27,13 @@ const store = new Vuex.Store({
       setTimeout(() => {
         commit(types.INCREMENT, payload)
       }, 250)
+    },
+    SAY_HELLO({commit, dispatch, state}, {type}) {
+      return dispatch('HELLO', 'denmark')
+    },
+    'test-1'({commit, dispatch, state}) {
+      state.doc.name = "john";
+      state.doc.body = "james";
     }
   },
   modules: {

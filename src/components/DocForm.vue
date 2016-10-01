@@ -1,7 +1,7 @@
 <template lang="pug">
   form#doc-form
     #doc-content
-      textarea#doc-text(name="doc", placeholder="Enter stuff here...") {{body}}
+      textarea#doc-text(name="doc" v-model="body" placeholder="Enter stuff here...")
     input#feed-button(type="submit", value="feed to croc")
 </template>
 
@@ -52,10 +52,13 @@
 
 <script>
   export default{
-    data(){
+    data() {
       return {
-        body: 'I like croc.farm I use it all the time\nI also use google from time to time, time'
+        body: this.$store.state.doc.body
       }
+    },
+    computed: {
+
     }
   }
 </script>

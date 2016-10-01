@@ -24,23 +24,20 @@
   export default {
     data() {
       return {
-        doc: {
-          name: "generous-eagle",
-          body: "I like bodies",
-        }
+      }
+    },
+    computed: {
+      doc() {
+        return this.$store.state.doc;
+      },
+      temp: function () {
+        return `Amir2 ${this.$store.state.count} + ${this.$store.state.smart.fun}`
       }
     },
     methods: {
       interesting(howMuch) {
         this.$store.dispatch(types.INCREMENT, {fun: howMuch})
-      }
-    },
-    computed: {
-      croc_url() {
-        return `${BASE_URL}/${this.doc.name}`
-      },
-      temp: function () {
-        return `Amir2 ${this.$store.state.count} + ${this.$store.state.smart.fun}`
+        this.$store.dispatch('test-1')
       }
     },
     components: {
